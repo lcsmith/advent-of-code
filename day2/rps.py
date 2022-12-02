@@ -2,7 +2,7 @@ import os
 import sys
 
 
-def run_day2():
+def run_day2_part1():
     with open(os.path.join(sys.path[0], "day2\\input"), "r") as strategy:
         lines = strategy.readlines()
 
@@ -12,6 +12,21 @@ def run_day2():
         opponent = convert_opponent(plan[0])
         thrown = convert_thrown(plan[1])
         total_score += convert_thrown(plan[1])
+        total_score += score_outcome(opponent, thrown)
+
+    print(total_score)
+
+
+def run_day2_part2():
+    with open(os.path.join(sys.path[0], "day2\\input"), "r") as strategy:
+        lines = strategy.readlines()
+
+    total_score = 0
+    for line in lines:
+        plan = line.split()
+        opponent = convert_opponent(plan[0])
+        thrown = convert_expectation(opponent, plan[1])
+        total_score += thrown
         total_score += score_outcome(opponent, thrown)
 
     print(total_score)
@@ -27,6 +42,18 @@ def convert_thrown(thrown):
             return 3
 
 
+def convert_expectation(opponent, plan):
+    match plan:
+        case "X":
+            if opponent == 1:
+                return 3
+            return opponent - 1
+        case "Y":
+            return opponent
+        case "Z":
+            return (opponent % 3) + 1
+
+
 def convert_opponent(opponent):
     match opponent:
         case "A":
@@ -40,6 +67,6 @@ def convert_opponent(opponent):
 def score_outcome(opponent, thrown):
     if thrown == opponent:
         return 3
-    if thrown == (opponent % 3)+1:
+    if thrown == (opponent % 3) + 1:
         return 6
     return 0
