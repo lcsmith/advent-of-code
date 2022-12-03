@@ -45,9 +45,7 @@ def convert_thrown(thrown):
 def convert_expectation(opponent, plan):
     match plan:
         case "X":
-            if opponent == 1:
-                return 3
-            return opponent - 1
+            return ((opponent - 2) % 3) + 1
         case "Y":
             return opponent
         case "Z":
