@@ -3,8 +3,8 @@ import sys
 
 
 def run_day1(num_elves):
-    with open(os.path.join(sys.path[0], "day1\\input"), "r") as elves:
-        lines = elves.readlines()
+    with open(os.path.join(sys.path[0], "day1\\input"), "r") as infile:
+        lines = infile.readlines()
 
     best_calories = [0]*num_elves
     current_calories = 0
@@ -18,4 +18,4 @@ def run_day1(num_elves):
         else:
             current_calories += int(line)
 
-    print(sum(best_calories))
+    return sum(best_calories)

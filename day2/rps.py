@@ -3,8 +3,8 @@ import sys
 
 
 def run_day2_part1():
-    with open(os.path.join(sys.path[0], "day2\\input"), "r") as strategy:
-        lines = strategy.readlines()
+    with open(os.path.join(sys.path[0], "day2\\input"), "r") as infile:
+        lines = infile.readlines()
 
     total_score = 0
     for line in lines:
@@ -14,7 +14,7 @@ def run_day2_part1():
         total_score += convert_thrown(plan[1])
         total_score += score_outcome(opponent, thrown)
 
-    print(total_score)
+    return total_score
 
 
 def run_day2_part2():
@@ -29,7 +29,7 @@ def run_day2_part2():
         total_score += thrown
         total_score += score_outcome(opponent, thrown)
 
-    print(total_score)
+    return total_score
 
 
 def convert_thrown(thrown):
