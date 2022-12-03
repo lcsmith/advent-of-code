@@ -1,4 +1,4 @@
-from day1.elf_calories import run_day1
+from day1.calories import run_day1
 from day2.rps import run_day2_part2, run_day2_part1
 from day3.rucksack import run_day3_part1, run_day3_part2
 
