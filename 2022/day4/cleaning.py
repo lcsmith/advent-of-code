@@ -3,6 +3,14 @@ import sys
 
 
 def run_day4_part1():
+    return run_with_check(is_contained)
+
+
+def run_day4_part2():
+    return run_with_check(is_overlapped)
+
+
+def run_with_check(contain_or_overlap):
     with open(os.path.join(sys.path[0], "day4\\input"), "r") as infile:
         lines = infile.readlines()
 
@@ -12,7 +20,7 @@ def run_day4_part1():
         assignments = line.split(",")
         first_range = assignments[0].split("-")
         second_range = assignments[1].split("-")
-        if is_contained(first_range, second_range) | is_contained(second_range, first_range):
+        if contain_or_overlap(first_range, second_range) | contain_or_overlap(second_range, first_range):
             containments += 1
 
     return containments
@@ -20,3 +28,7 @@ def run_day4_part1():
 
 def is_contained(first, second):
     return (int(first[0]) <= int(second[0])) & (int(first[1]) >= int(second[1]))
+
+
+def is_overlapped(first, second):
+    return (int(first[0]) <= int(second[1])) & (int(first[1]) >= int(second[0]))
