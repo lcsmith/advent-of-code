@@ -26,7 +26,7 @@ def handle_initial_input(line, crates, _):
     if line[1] == "1":
         return handle_movement
     crate_index = 1
-    while (crate_index <= 9) & ((crate_index*4 - 3) < len(line)):
+    while crate_index <= 9 and (crate_index*4 - 3) < len(line):
         crate_name = line[crate_index*4 - 3]
         if crate_name.isalpha():
             crates[crate_index-1].append(crate_name)

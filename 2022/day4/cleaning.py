@@ -27,8 +27,8 @@ def run_with_check(contain_or_overlap):
 
 
 def is_contained(first, second):
-    return (int(first[0]) <= int(second[0])) & (int(first[1]) >= int(second[1]))
+    return int(first[0]) <= int(second[0]) and int(first[1]) >= int(second[1])
 
 
 def is_overlapped(first, second):
-    return (int(first[0]) <= int(second[1])) & (int(first[1]) >= int(second[0]))
+    return int(first[0]) <= int(second[1]) and int(first[1]) >= int(second[0])
