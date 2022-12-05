@@ -2,6 +2,7 @@ from day1.calories import run_day1
 from day2.rps import run_day2_part2, run_day2_part1
 from day3.rucksack import run_day3_part1, run_day3_part2
 from day4.cleaning import run_day4_part1, run_day4_part2
+from day5.cratestack import run_day5_part1
 
 
 def run(day, part):
@@ -22,7 +23,9 @@ def run(day, part):
             return run_day4_part1()
         case 4, 2:
             return run_day4_part2()
+        case 5, 1:
+            return run_day5_part1()
 
 
 if __name__ == '__main__':
-    print(run(4, 2))
+    print(run(5, 1))
