@@ -26,6 +26,8 @@ def run_day7():
             current_dir = current_dir.subdirectories[line_split[2]]
 
     traverse_sizes(dir_struct)
+    space_to_delete = dir_struct.size - 40000000
+    print(find_minimal_directory(dir_struct, space_to_delete).size)
 
 
 def traverse_sizes(directory):
@@ -38,6 +40,16 @@ def traverse_sizes(directory):
         print(total_size)
     directory.size = total_size
 
+
+def find_minimal_directory(directory, space_to_delete):
+    if directory.size < space_to_delete:
+        return None
+    minimal_directory = directory
+    for subdirectory in directory.subdirectories.items():
+        sub_minimal = find_minimal_directory(subdirectory[1], space_to_delete)
+        if sub_minimal is not None and sub_minimal.size < minimal_directory.size:
+            minimal_directory = sub_minimal
+    return minimal_directory
 
 class DirectoryTreeNode:
     def __init__(self, parent):

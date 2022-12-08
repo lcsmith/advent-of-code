@@ -35,6 +35,8 @@ def run(day, part):
             return run_day6(14)
         case 7, 1:
             return run_day7()
+        case 7, 2:
+            return run_day7()
 
 
 if __name__ == '__main__':
