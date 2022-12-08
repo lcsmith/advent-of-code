@@ -4,6 +4,7 @@ from day3.rucksack import run_day3_part1, run_day3_part2
 from day4.cleaning import run_day4_part1, run_day4_part2
 from day5.cratestack import run_day5_part1, run_day5_part2
 from day6.signal import run_day6
+from day7.directories import run_day7
 
 
 def run(day, part):
@@ -32,7 +33,9 @@ def run(day, part):
             return run_day6(4)
         case 6, 2:
             return run_day6(14)
+        case 7, 1:
+            return run_day7()
 
 
 if __name__ == '__main__':
-    print(run(6, 2))
+    print(run(7, 1))
