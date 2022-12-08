@@ -5,6 +5,7 @@ from day4.cleaning import run_day4_part1, run_day4_part2
 from day5.cratestack import run_day5_part1, run_day5_part2
 from day6.signal import run_day6
 from day7.directories import run_day7
+from day8.treegrid import run_day8
 
 
 def run(day, part):
@@ -37,7 +38,9 @@ def run(day, part):
             return run_day7()
         case 7, 2:
             return run_day7()
+        case 8, 1:
+            return run_day8()
 
 
 if __name__ == '__main__':
-    print(run(7, 1))
+    print(run(8, 1))
