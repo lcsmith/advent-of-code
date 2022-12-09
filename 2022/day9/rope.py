@@ -2,8 +2,8 @@ import os
 import sys
 
 
-def run_day9(num_knots):
-    with open(os.path.join(sys.path[0], "day9\\input"), "r") as infile:
+def run(num_knots):
+    with open(os.path.join(sys.path[0], "input"), "r") as infile:
         lines = infile.readlines()
 
     knot_loc = [(0, 0)]*num_knots
@@ -39,3 +39,7 @@ def move_trail(lead_x, lead_y, trail_x, trail_y):
     if abs(trail_y-lead_y) == 2:
         return lead_x, trail_y + (lead_y - trail_y)/2
     return trail_x, trail_y
+
+
+if __name__ == '__main__':
+    print(run(10))

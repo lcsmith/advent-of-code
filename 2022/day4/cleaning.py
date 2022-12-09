@@ -2,16 +2,16 @@ import os
 import sys
 
 
-def run_day4_part1():
+def run_part1():
     return run_with_check(is_contained)
 
 
-def run_day4_part2():
+def run_part2():
     return run_with_check(is_overlapped)
 
 
 def run_with_check(contain_or_overlap):
-    with open(os.path.join(sys.path[0], "day4\\input"), "r") as infile:
+    with open(os.path.join(sys.path[0], "input"), "r") as infile:
         lines = infile.readlines()
 
     containments = 0
@@ -32,3 +32,7 @@ def is_contained(first, second):
 
 def is_overlapped(first, second):
     return int(first[0]) <= int(second[1]) and int(first[1]) >= int(second[0])
+
+
+if __name__ == '__main__':
+    print(run_part2())

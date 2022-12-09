@@ -2,8 +2,8 @@ import os
 import sys
 
 
-def run_day1(num_elves):
-    with open(os.path.join(sys.path[0], "day1\\input"), "r") as infile:
+def run(num_elves):
+    with open(os.path.join(sys.path[0], "input"), "r") as infile:
         lines = infile.readlines()
 
     best_calories = [0]*num_elves
@@ -19,3 +19,7 @@ def run_day1(num_elves):
             current_calories += int(line)
 
     return sum(best_calories)
+
+
+if __name__ == '__main__':
+    print(run(3))

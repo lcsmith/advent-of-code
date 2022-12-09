@@ -2,7 +2,7 @@ import os
 import sys
 
 
-def run_day8_part1():
+def run_part1():
     with open(os.path.join(sys.path[0], "day8\\input"), "r") as infile:
         lines = infile.readlines()
     tree_heights = list(map(lambda x: [int(y) for y in x.strip()], lines))
@@ -18,8 +18,8 @@ def run_day8_part1():
     return sum(map(lambda z: sum(z), visible_trees))
 
 
-def run_day8_part2():
-    with open(os.path.join(sys.path[0], "day8\\input"), "r") as infile:
+def run_part2():
+    with open(os.path.join(sys.path[0], "input"), "r") as infile:
         lines = infile.readlines()
     tree_heights = list(map(lambda x: [int(y) for y in x.strip()], lines))
 
@@ -80,3 +80,7 @@ def direction_distance(tree_heights, x, y, position_mover):
         x, y = position_mover(x, y)
 
     return total_distance
+
+
+if __name__ == '__main__':
+    print(run_part2())

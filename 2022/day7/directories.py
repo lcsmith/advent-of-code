@@ -2,8 +2,8 @@ import os
 import sys
 
 
-def run_day7():
-    with open(os.path.join(sys.path[0], "day7\\input"), "r") as infile:
+def run():
+    with open(os.path.join(sys.path[0], "input"), "r") as infile:
         lines = infile.readlines()
 
     dir_struct = DirectoryTreeNode(None)
@@ -57,3 +57,7 @@ class DirectoryTreeNode:
         self.subdirectories = {}
         self.files = {}
         self.size = None
+
+
+if __name__ == '__main__':
+    print(run())

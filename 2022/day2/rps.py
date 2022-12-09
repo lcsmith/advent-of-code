@@ -2,8 +2,8 @@ import os
 import sys
 
 
-def run_day2_part1():
-    with open(os.path.join(sys.path[0], "day2\\input"), "r") as infile:
+def run_part1():
+    with open(os.path.join(sys.path[0], "input"), "r") as infile:
         lines = infile.readlines()
 
     total_score = 0
@@ -17,8 +17,8 @@ def run_day2_part1():
     return total_score
 
 
-def run_day2_part2():
-    with open(os.path.join(sys.path[0], "day2\\input"), "r") as strategy:
+def run_part2():
+    with open(os.path.join(sys.path[0], "input"), "r") as strategy:
         lines = strategy.readlines()
 
     total_score = 0
@@ -68,3 +68,7 @@ def score_outcome(opponent, thrown):
     if thrown == (opponent % 3) + 1:
         return 6
     return 0
+
+
+if __name__ == '__main__':
+    print(run_part2())

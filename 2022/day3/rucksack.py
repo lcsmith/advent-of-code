@@ -2,8 +2,8 @@ import os
 import sys
 
 
-def run_day3_part1():
-    with open(os.path.join(sys.path[0], "day3\\input"), "r") as infile:
+def run_part1():
+    with open(os.path.join(sys.path[0], "input"), "r") as infile:
         lines = infile.readlines()
 
         total_priority = 0
@@ -19,8 +19,8 @@ def run_day3_part1():
         return total_priority
 
 
-def run_day3_part2():
-    with open(os.path.join(sys.path[0], "day3\\input"), "r") as infile:
+def run_part2():
+    with open(os.path.join(sys.path[0], "input"), "r") as infile:
         lines = infile.readlines()
 
         total_priority = 0
@@ -41,3 +41,7 @@ def get_priority(item):
     if item.isupper():
         return ascii_value - 38
     return ascii_value - 96
+
+
+if __name__ == '__main__':
+    print(run_part2())

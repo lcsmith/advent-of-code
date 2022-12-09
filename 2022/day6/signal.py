@@ -3,8 +3,8 @@ import sys
 import numpy
 
 
-def run_day6(num_distinct):
-    with open(os.path.join(sys.path[0], "day6\\input"), "r") as infile:
+def run(num_distinct):
+    with open(os.path.join(sys.path[0], "input"), "r") as infile:
         signal = infile.readline()
 
         chars = [signal[i] for i in range(num_distinct)]
@@ -15,3 +15,6 @@ def run_day6(num_distinct):
 
     return -1
 
+
+if __name__ == '__main__':
+    print(run(14))

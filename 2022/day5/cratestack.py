@@ -2,16 +2,16 @@ import os
 import sys
 
 
-def run_day5_part1():
+def run_part1():
     return run_with_movement_handler(one_at_a_time)
 
 
-def run_day5_part2():
+def run_part2():
     return run_with_movement_handler(all_at_once)
 
 
 def run_with_movement_handler(crane):
-    with open(os.path.join(sys.path[0], "day5\\input"), "r") as infile:
+    with open(os.path.join(sys.path[0], "input"), "r") as infile:
         lines = infile.readlines()
 
         crates = [[] for _ in range(9)]
@@ -57,3 +57,7 @@ def all_at_once(num_to_move, source, destination):
     for index in range(num_to_move):
         crate = source.pop(0)
         destination.insert(index, crate)
+
+
+if __name__ == '__main__':
+    print(run_part2())
