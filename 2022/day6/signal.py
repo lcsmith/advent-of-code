@@ -11,10 +11,10 @@ def run(num_distinct):
         for char_index in range(num_distinct, len(signal)):
             chars[char_index % num_distinct] = signal[char_index]
             if len(numpy.unique(chars)) == num_distinct:
-                return char_index+1
+                print(char_index+1)
 
-    return -1
+    print("whoops")
 
 
 if __name__ == '__main__':
-    print(run(14))
+    run(14)

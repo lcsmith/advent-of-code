@@ -18,8 +18,8 @@ def run(num_elves):
         else:
             current_calories += int(line)
 
-    return sum(best_calories)
+    print(sum(best_calories))
 
 
 if __name__ == '__main__':
-    print(run(3))
+    run(3)

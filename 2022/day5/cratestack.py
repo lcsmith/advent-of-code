@@ -3,11 +3,11 @@ import sys
 
 
 def run_part1():
-    return run_with_movement_handler(one_at_a_time)
+    run_with_movement_handler(one_at_a_time)
 
 
 def run_part2():
-    return run_with_movement_handler(all_at_once)
+    run_with_movement_handler(all_at_once)
 
 
 def run_with_movement_handler(crane):
@@ -19,7 +19,7 @@ def run_with_movement_handler(crane):
         for line in lines:
             handler = handler(line, crates, crane)
 
-        return [crate[0] for crate in crates]
+        print([crate[0] for crate in crates])
 
 
 def handle_initial_input(line, crates, _):
@@ -60,4 +60,4 @@ def all_at_once(num_to_move, source, destination):
 
 
 if __name__ == '__main__':
-    print(run_part2())
+    run_part2()

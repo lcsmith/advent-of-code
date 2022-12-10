@@ -22,10 +22,10 @@ def run():
             register += int(instruction[1])
 
     print(strengths[19]+strengths[59]+strengths[99]+strengths[139]+strengths[179]+strengths[219])
-    print(len(registers))
+
     raster = ""
     for cycle in range(len(registers)):
-        if (registers[cycle]-1 <= (cycle%40) <= registers[cycle]+1):
+        if registers[cycle]-1 <= (cycle % 40) <= registers[cycle]+1:
             raster = raster + "#"
         else:
             raster = raster + "."
@@ -35,4 +35,4 @@ def run():
 
 
 if __name__ == '__main__':
-    print(run())
+    run()

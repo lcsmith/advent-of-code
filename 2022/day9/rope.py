@@ -16,7 +16,7 @@ def run(num_knots):
             for knot in range(1, len(knot_loc)):
                 knot_loc[knot] = move_trail(*knot_loc[knot-1], *knot_loc[knot])
             visited.add(knot_loc[num_knots-1])
-    return len(visited)
+    print(len(visited))
 
 
 def move_head(x, y, direction):
@@ -42,4 +42,4 @@ def move_trail(lead_x, lead_y, trail_x, trail_y):
 
 
 if __name__ == '__main__':
-    print(run(10))
+    run(10)

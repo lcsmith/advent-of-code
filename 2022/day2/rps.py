@@ -14,7 +14,7 @@ def run_part1():
         total_score += convert_thrown(plan[1])
         total_score += score_outcome(opponent, thrown)
 
-    return total_score
+    print(total_score)
 
 
 def run_part2():
@@ -29,7 +29,7 @@ def run_part2():
         total_score += thrown
         total_score += score_outcome(opponent, thrown)
 
-    return total_score
+    print(total_score)
 
 
 def convert_thrown(thrown):
@@ -71,4 +71,4 @@ def score_outcome(opponent, thrown):
 
 
 if __name__ == '__main__':
-    print(run_part2())
+    run_part2()

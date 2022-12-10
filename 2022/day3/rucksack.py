@@ -16,7 +16,7 @@ def run_part1():
             misplaced = left_sack.intersection(right_sack)
             total_priority += get_priority(misplaced.pop())
 
-        return total_priority
+        print(total_priority)
 
 
 def run_part2():
@@ -33,7 +33,7 @@ def run_part2():
             badge = pack1.intersection(pack2).intersection(pack3)
             total_priority += get_priority(badge.pop())
 
-        return total_priority
+        print(total_priority)
 
 
 def get_priority(item):
@@ -44,4 +44,4 @@ def get_priority(item):
 
 
 if __name__ == '__main__':
-    print(run_part2())
+    run_part2()

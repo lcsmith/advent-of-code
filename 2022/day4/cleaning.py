@@ -3,11 +3,11 @@ import sys
 
 
 def run_part1():
-    return run_with_check(is_contained)
+    run_with_check(is_contained)
 
 
 def run_part2():
-    return run_with_check(is_overlapped)
+    run_with_check(is_overlapped)
 
 
 def run_with_check(contain_or_overlap):
@@ -23,7 +23,7 @@ def run_with_check(contain_or_overlap):
         if contain_or_overlap(first_range, second_range) | contain_or_overlap(second_range, first_range):
             containments += 1
 
-    return containments
+    print(containments)
 
 
 def is_contained(first, second):
@@ -35,4 +35,4 @@ def is_overlapped(first, second):
 
 
 if __name__ == '__main__':
-    print(run_part2())
+    run_part2()

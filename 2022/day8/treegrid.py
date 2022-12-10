@@ -15,7 +15,7 @@ def run_part1():
             if tree_heights[y][x] > visibility[y][x]:
                 visible_trees[y][x] = 1
 
-    return sum(map(lambda z: sum(z), visible_trees))
+    print(sum(map(lambda z: sum(z), visible_trees)))
 
 
 def run_part2():
@@ -24,8 +24,8 @@ def run_part2():
     tree_heights = list(map(lambda x: [int(y) for y in x.strip()], lines))
 
     view_scores = get_view_distance(tree_heights)
-    print(view_scores)
-    return max(map(max, view_scores))
+
+    print(max(map(max, view_scores)))
 
 
 def get_visibility(tree_heights):
@@ -83,4 +83,4 @@ def direction_distance(tree_heights, x, y, position_mover):
 
 
 if __name__ == '__main__':
-    print(run_part2())
+    run_part2()
