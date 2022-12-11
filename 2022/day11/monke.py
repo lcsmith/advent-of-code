@@ -49,15 +49,15 @@ def run():
                     monkeys[monkey.false_throw].items.append(item)
             monkey.inspections += len(monkey.items)
             monkey.items.clear()
-    for monkey in monkeys.values():
-        print(monkey.inspections)
+    monkey_list = list(monkeys.values())
+    monkey_list.sort(key=lambda m: m.inspections, reverse=True)
+    print(monkey_list[0].inspections * monkey_list[1].inspections)
 
 
 class Monkey:
     def __init__(self):
         self.items = []
         self.operation = None
-        self.operation_extra = None
         self.test_divisor = None
         self.true_throw = None
         self.false_throw = None
@@ -65,4 +65,4 @@ class Monkey:
 
 
 if __name__ == '__main__':
-    print(run())
+    run()
