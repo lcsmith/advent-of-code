@@ -11,7 +11,6 @@ def run():
     registers = []
     strengths = []
     for line in lines:
-        strengths.append(cycle*register)
         registers.append(register)
         cycle += 1
         if line != "noop\n":

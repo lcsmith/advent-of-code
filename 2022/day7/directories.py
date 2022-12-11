@@ -51,6 +51,7 @@ def find_minimal_directory(directory, space_to_delete):
             minimal_directory = sub_minimal
     return minimal_directory
 
+
 class DirectoryTreeNode:
     def __init__(self, parent):
         self.parent = parent
