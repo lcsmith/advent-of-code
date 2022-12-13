@@ -1,14 +1,25 @@
 import heapq
 import math
-import os
-import sys
 
 
 def run():
     heights, start, target = parse_heights()
+    best_distance = get_astar_length(heights, start, target)
 
+    is_part_2_and_we_are_lazy = True
+    if is_part_2_and_we_are_lazy:
+        for x in range(len(heights[0])):
+            for y in range(len(heights)):
+                if heights[y][x] == ord('a'):
+                    wack_distance = get_astar_length(heights, (y, x), target)
+                    if wack_distance is not None and wack_distance < best_distance:
+                        best_distance = wack_distance
+
+    print(best_distance)
+
+
+def get_astar_length(heights, start, target):
     traversal = list(map(lambda x: [None] * len(x), heights))
-    print(traversal)
     traversal[start[0]][start[1]] = 0
     fringe = [apply_heuristic(start, 0, target)]
     heapq.heapify(fringe)
@@ -19,8 +30,7 @@ def run():
             next_step = try_take_step(heights, traversal, current_location, direction)
             if next_step is not None:
                 if next_step == target:
-                    print(next_path_length)
-                    break
+                    return next_path_length
                 traversal[next_step[0]][next_step[1]] = next_path_length
                 heapq.heappush(fringe, apply_heuristic(next_step, next_path_length, target))
 
