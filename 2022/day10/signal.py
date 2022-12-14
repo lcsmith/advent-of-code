@@ -1,19 +1,18 @@
-import os
-import sys
 
 
 def run():
-    with open(os.path.join(sys.path[0], "input"), "r") as infile:
-        lines = infile.readlines()
+    with open('input') as infile:
+        lines = [line.strip() for line in infile]
 
     cycle = 1
     register = 1
     registers = []
     strengths = []
     for line in lines:
+        strengths.append(cycle*register)
         registers.append(register)
         cycle += 1
-        if line != "noop\n":
+        if line != "noop":
             strengths.append(cycle*register)
             registers.append(register)
             cycle += 1

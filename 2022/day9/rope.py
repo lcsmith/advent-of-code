@@ -1,10 +1,8 @@
-import os
-import sys
 
 
 def run(num_knots):
-    with open(os.path.join(sys.path[0], "input"), "r") as infile:
-        lines = infile.readlines()
+    with open('input') as infile:
+        lines = [line.strip() for line in infile]
 
     knot_loc = [(0, 0)]*num_knots
     visited = set()

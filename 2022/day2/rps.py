@@ -1,10 +1,8 @@
-import os
-import sys
 
 
 def run_part1():
-    with open(os.path.join(sys.path[0], "input"), "r") as infile:
-        lines = infile.readlines()
+    with open('input') as infile:
+        lines = [line.strip() for line in infile]
 
     total_score = 0
     for line in lines:
@@ -18,8 +16,8 @@ def run_part1():
 
 
 def run_part2():
-    with open(os.path.join(sys.path[0], "input"), "r") as strategy:
-        lines = strategy.readlines()
+    with open('input') as infile:
+        lines = [line.strip() for line in infile]
 
     total_score = 0
     for line in lines:

@@ -1,11 +1,9 @@
-import os
-import sys
 
 
 def run_part1():
-    with open(os.path.join(sys.path[0], "day8\\input"), "r") as infile:
-        lines = infile.readlines()
-    tree_heights = list(map(lambda x: [int(y) for y in x.strip()], lines))
+    with open('input') as infile:
+        lines = [line.strip() for line in infile]
+    tree_heights = list(map(lambda t: [int(tt) for tt in t], lines))
 
     visibility = get_visibility(tree_heights)
     visible_trees = list(map(lambda t: [0]*len(t), tree_heights))
@@ -19,9 +17,9 @@ def run_part1():
 
 
 def run_part2():
-    with open(os.path.join(sys.path[0], "input"), "r") as infile:
-        lines = infile.readlines()
-    tree_heights = list(map(lambda x: [int(y) for y in x.strip()], lines))
+    with open('input') as infile:
+        lines = [line.strip() for line in infile]
+    tree_heights = list(map(lambda x: [int(y) for y in x], lines))
 
     view_scores = get_view_distance(tree_heights)
 

@@ -1,21 +1,19 @@
-import os
-import sys
 
 
 def run():
-    with open(os.path.join(sys.path[0], "input"), "r") as infile:
-        lines = infile.readlines()
+    with open('input') as infile:
+        lines = [line.strip() for line in infile]
 
     dir_struct = DirectoryTreeNode(None)
     current_dir = dir_struct
     for line in lines:
         line_split = line.split()
-        if line == "$ cd /\n":
+        if line == "$ cd /":
             while current_dir.parent is not None:
                 current_dir = current_dir.parent
-        elif line == "$ cd ..\n":
+        elif line == "$ cd ..":
             current_dir = current_dir.parent
-        elif line == "$ ls\n":
+        elif line == "$ ls":
             pass
         elif line_split[0].isnumeric():
             current_dir.files[line_split[1]] = int(line_split[0])

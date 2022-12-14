@@ -1,5 +1,3 @@
-import os
-import sys
 import math
 
 
@@ -29,8 +27,8 @@ def run():
 
 
 def parse_monkeys():
-    with open(os.path.join(sys.path[0], "input"), "r") as infile:
-        lines = infile.readlines()
+    with open('input') as infile:
+        lines = [line.strip() for line in infile]
 
     monkeys = {}
     current_monkey = None
@@ -45,7 +43,7 @@ def parse_monkeys():
             for item_it in range(2, len(words)):
                 current_monkey.items.append(int(words[item_it].replace(",", "")))
         elif words[0] == "Operation:":
-            if line == "  Operation: new = old * old\n":
+            if line == "Operation: new = old * old":
                 current_monkey.operation = lambda x: x * x
             elif words[4] == "*":
                 current_monkey.operation = lambda x, operand = int(words[5]): x * operand

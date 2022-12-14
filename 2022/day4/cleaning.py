@@ -1,5 +1,3 @@
-import os
-import sys
 
 
 def run_part1():
@@ -11,8 +9,8 @@ def run_part2():
 
 
 def run_with_check(contain_or_overlap):
-    with open(os.path.join(sys.path[0], "input"), "r") as infile:
-        lines = infile.readlines()
+    with open('input') as infile:
+        lines = [line.strip() for line in infile]
 
     containments = 0
 

@@ -1,5 +1,3 @@
-import os
-import sys
 
 
 def run_part1():
@@ -11,8 +9,8 @@ def run_part2():
 
 
 def run_with_movement_handler(crane):
-    with open(os.path.join(sys.path[0], "input"), "r") as infile:
-        lines = infile.readlines()
+    with open('input') as infile:
+        lines = [line for line in infile]
 
         crates = [[] for _ in range(9)]
         handler = handle_initial_input
