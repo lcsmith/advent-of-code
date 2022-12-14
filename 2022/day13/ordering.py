@@ -1,4 +1,5 @@
 from ast import literal_eval
+from functools import cmp_to_key
 
 
 def run():
@@ -6,12 +7,27 @@ def run():
         lines = [line.strip() for line in infile]
 
     good_orders = []
+    first_divider = [[2]]
+    second_divider = [[6]]
+    all_messages = [first_divider, second_divider]
     for pair_index in range(0, len(lines), 3):
         first = literal_eval(lines[pair_index])
         second = literal_eval(lines[pair_index+1])
         if are_ordered(first, second):
             good_orders.append(pair_index/3 + 1)
+
+        all_messages.append(first)
+        all_messages.append(second)
     print(sum(good_orders))
+    all_messages.sort(key=cmp_to_key(ordering_comparator))
+    print((all_messages.index(first_divider)+1) * (all_messages.index(second_divider)+1))
+
+
+def ordering_comparator(first, second):
+    if are_ordered(first, second):
+        return -1
+    else:
+        return 1
 
 
 def are_ordered(first, second):
