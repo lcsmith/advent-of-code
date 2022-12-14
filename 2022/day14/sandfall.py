@@ -1,7 +1,8 @@
 
 
 def run():
-    cave = parse_cave()
+    is_part2 = True
+    cave = parse_cave(is_part2)
     sand_source = (500, 0)
     sand_particle = sand_source
     keep_dropping = True
@@ -16,18 +17,18 @@ def run():
             sand_particle = sand_particle[0] + 1, sand_particle[1] + 1
         else:
             if sand_particle == sand_source:
-                print("whoops")
                 break
             cave[sand_particle[0]][sand_particle[1]] = 'o'
             sand_particle = sand_source
     print_cave(cave)
 
 
-def parse_cave():
+def parse_cave(is_part2):
     with open('input') as infile:
         lines = [line.strip() for line in infile]
 
     cave = list(map(lambda z: ['.'] * 1000, range(1000)))
+    deepest_y = 0
     for line in lines:
         path = line.split()
         path_segments = []
@@ -36,6 +37,7 @@ def parse_cave():
                 continue
             xy = [int(coordinate) for coordinate in step.split(",")]
             path_segments.append((xy[0], xy[1]))
+            deepest_y = max(deepest_y, xy[1])
 
         for index in range(len(path_segments)-1):
             if path_segments[index][1] == path_segments[index+1][1]:
@@ -48,6 +50,9 @@ def parse_cave():
                 end = max(path_segments[index][1], path_segments[index+1][1])
                 for y in range(start, end+1):
                     cave[path_segments[index][0]][y] = '#'
+    if is_part2:
+        for x in range(len(cave)):
+            cave[x][deepest_y + 2] = "#"
     return cave
 
 
