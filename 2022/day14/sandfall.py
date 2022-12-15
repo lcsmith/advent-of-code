@@ -16,9 +16,9 @@ def run():
         elif (cave[sand_particle[0]+1][sand_particle[1]+1]) == '.':
             sand_particle = sand_particle[0] + 1, sand_particle[1] + 1
         else:
-            if sand_particle == sand_source:
-                break
             cave[sand_particle[0]][sand_particle[1]] = 'o'
+            if sand_particle == sand_source:
+                keep_dropping = False
             sand_particle = sand_source
     print_cave(cave)
 
