@@ -16,7 +16,8 @@ def run():
     rock_location = (2, 3)
     rock_count = 1
     step = 0
-    while rock_count <= 2022:
+    extra_rocks = 142
+    while extra_rocks >= 0:
         blow = blows[step % len(blows)]
         if blow == '<' and can_shift(arena, current_rock, *rock_location, -1, 0):
             rock_location = (rock_location[0] - 1, rock_location[1])
@@ -30,13 +31,17 @@ def run():
             current_rock = rocks[rock_count % len(rocks)]
             rock_location = (2, 3 + get_max_height(arena))
             rock_count += 1
+            if step > len(blows):
+                extra_rocks -= 1
         step += 1
 
     print(current_rock)
     print(blow)
     print(rock_location)
+    print(rock_count)
     print_arena(arena)
     print(get_max_height(arena))
+    ## find da pattern, crunch da numbers in Excel
 
 
 def get_max_height(arena):
@@ -74,12 +79,12 @@ def can_shift(arena, shape, location_x, location_y, shift_x, shift_y):
 def print_arena(arena):
     arena.reverse()
     printed = ""
-    for row in arena:
+    for row in arena[:12]:
         printed += "|"
         for column in row:
             printed += column
         printed += "|\n"
-    printed += "+_______+"
+    #printed += "+_______+"
     print(printed)
 
 
