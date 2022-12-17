@@ -40,21 +40,18 @@ def run_part2():
             if x_range:
                 exclusions.append(x_range)
         exclusions.sort()
+
         for exclusion in exclusions:
             for inclusion in inclusions.copy():
                 if exclusion[0] > inclusion[1] or exclusion[1] < inclusion[0]:
                     continue
 
                 inclusions.remove(inclusion)
-                if exclusion[0] <= inclusion[0] <= exclusion[1] <= inclusion[1]:
+                if exclusion[1] <= inclusion[1]:
                     inclusions.append((exclusion[1] + 1, inclusion[1]))
-                elif inclusion[0] <= exclusion[0] <= inclusion[1] <= exclusion[1]:
+                if inclusion[0] <= exclusion[0]:
                     inclusions.append((inclusion[0], exclusion[0] - 1))
-                elif inclusion[0] <= exclusion[0] <= exclusion[1] <= inclusion[1]:
-                    inclusions.append((inclusion[0], exclusion[0] - 1))
-                    inclusions.append((exclusion[1] + 1, inclusion[1]))
-                elif exclusion[0] <= inclusion[0] <= inclusion[1] <= exclusion[1]:
-                    pass
+
         if len(inclusions) == 1 and inclusions[0][0] == inclusions[0][1]:
             print((inclusions[0][0], y))
 
