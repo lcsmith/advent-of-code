@@ -1,3 +1,4 @@
+import math
 
 
 def run():
@@ -35,13 +36,13 @@ def run():
                 extra_rocks -= 1
         step += 1
 
-    print(current_rock)
-    print(blow)
-    print(rock_location)
+    print_arena(arena, 12)
     print(rock_count)
-    print_arena(arena)
     print(get_max_height(arena))
-    ## find da pattern, crunch da numbers in Excel
+    # find da pattern - first round of blows drops 1733 rocks, gives 2649 height
+    # Every round after that starts with an identical base, and drops 1735 rocks for 2673 height
+    looping_rounds = math.floor((1000000000000-1733)/1735)
+    print(get_max_height(arena) + looping_rounds * 2673)
 
 
 def get_max_height(arena):
@@ -76,15 +77,17 @@ def can_shift(arena, shape, location_x, location_y, shift_x, shift_y):
     return True
 
 
-def print_arena(arena):
+def print_arena(arena, height):
     arena.reverse()
-    printed = ""
-    for row in arena[:12]:
-        printed += "|"
+    to_print = []
+    for row in arena[:height]:
+        to_print.append("|")
         for column in row:
-            printed += column
-        printed += "|\n"
-    #printed += "+_______+"
+            to_print.append(column)
+        to_print.append("|\n")
+    printed = "".join(to_print)
+    if height is None:
+        printed += "+_______+"
     print(printed)
 
 

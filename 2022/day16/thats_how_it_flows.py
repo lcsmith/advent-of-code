@@ -16,6 +16,7 @@ def run():
     shortest_paths = dict(nx.all_pairs_shortest_path(valves))
     unopened = [valve for valve in flows.keys() if flows[valve] != 0]
 
+    # Just kinda eyeball it, this looks like the right division
     unopened_1 = ['KL', 'YS', 'CD', 'ID', 'AC', 'MJ', 'BO', 'KW', 'DT']
     unopened_2 = ['OU', 'DY', 'RH', 'DI', 'TO', 'OI']
 
