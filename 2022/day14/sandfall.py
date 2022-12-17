@@ -3,24 +3,26 @@
 def run():
     is_part2 = True
     cave = parse_cave(is_part2)
+    cave = drop_sands(cave)
+    print([sand for row in cave for sand in row].count('o'))
+
+
+def drop_sands(cave):
     sand_source = (500, 0)
     sand_particle = sand_source
-    keep_dropping = True
-    while keep_dropping:
-        if sand_particle[1] >= 999:
-            keep_dropping = False
-        elif (cave[sand_particle[0]][sand_particle[1]+1]) == '.':
-            sand_particle = sand_particle[0], sand_particle[1] + 1
-        elif (cave[sand_particle[0]-1][sand_particle[1]+1]) == '.':
-            sand_particle = sand_particle[0] - 1, sand_particle[1] + 1
-        elif (cave[sand_particle[0]+1][sand_particle[1]+1]) == '.':
-            sand_particle = sand_particle[0] + 1, sand_particle[1] + 1
-        else:
+    while sand_particle[1] < 500:
+        did_drop = False
+        for drop in [(0, 1), (-1, 1), (1, 1)]:
+            if (cave[sand_particle[0]+drop[0]][sand_particle[1]+drop[1]]) == '.':
+                sand_particle = sand_particle[0] + drop[0], sand_particle[1] + drop[1]
+                did_drop = True
+                continue
+
+        if not did_drop:
             cave[sand_particle[0]][sand_particle[1]] = 'o'
             if sand_particle == sand_source:
-                keep_dropping = False
+                return cave
             sand_particle = sand_source
-    print_cave(cave)
 
 
 def parse_cave(is_part2):
