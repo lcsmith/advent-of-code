@@ -21,15 +21,15 @@ def run():
 
     print(strengths[19]+strengths[59]+strengths[99]+strengths[139]+strengths[179]+strengths[219])
 
-    raster = ""
+    raster = []
     for cycle in range(len(registers)):
         if registers[cycle]-1 <= (cycle % 40) <= registers[cycle]+1:
-            raster = raster + "#"
+            raster.append("#")
         else:
-            raster = raster + "."
+            raster.append(".")
         if cycle % 40 == 39:
-            raster = raster + "\n"
-    print(raster)
+            raster.append("\n")
+    print("".join(raster))
 
 
 if __name__ == '__main__':

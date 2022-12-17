@@ -59,12 +59,12 @@ def parse_cave(is_part2):
 
 
 def print_cave(cave):
-    cave_string = ""
+    to_print = []
     for y in range(len(cave[0])):
         for x in range(len(cave)):
-            cave_string += cave[x][y]
-        cave_string += "\n"
-    print(cave_string)
+            to_print.append(cave[x][y])
+        to_print.append("\n")
+    print("".join(to_print))
 
 
 if __name__ == '__main__':
