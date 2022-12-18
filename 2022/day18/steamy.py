@@ -28,7 +28,7 @@ def get_all_sides(cubes):
 def create_steam(cubes, min_edge, max_edge):
     cubes = set(cubes)
     steam = set([])
-    expansion_set = set([(1, 1, 1)])
+    expansion_set = set([(min_edge, min_edge, min_edge)])
     while expansion_set:
         steamlet = expansion_set.pop()
         if not (min_edge <= steamlet[0] <= max_edge and
