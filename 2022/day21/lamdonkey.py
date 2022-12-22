@@ -7,6 +7,7 @@ ops = {
     '/': operator.truediv,  # use operator.div for Python 2
     '%': operator.mod,
     '^': operator.xor,
+    '==': operator.eq,
 }
 
 
@@ -17,7 +18,12 @@ def run():
     for line in lines:
         instructions = line.split()
         monkey = instructions[0][:-1]
-        if len(instructions) == 2:
+        if monkey == "root":
+            monkeys[monkey] = lambda first_operand = instructions[1], op_string = instructions[2], second_operand = instructions[3]:\
+                print(str(monkeys[first_operand]()) + "\n" + str(monkeys[second_operand]()))
+        elif monkey == "humn":
+            monkeys[monkey] = lambda: 3441198826073
+        elif len(instructions) == 2:
             value = int(instructions[1])
             monkeys[monkey] = lambda x=value: x
         else:
