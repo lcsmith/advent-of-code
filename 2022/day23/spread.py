@@ -13,7 +13,10 @@ def run():
 
     ordered_steps = list(range(4))
 
-    for time in range(10):
+    time = 0
+    proposals = {None}
+    while proposals:
+        time += 1
         proposals = {}
         for elf_location in list(elves):
             proposal = get_proposal(elves, elf_location, ordered_steps)
@@ -33,6 +36,7 @@ def run():
     min_y = min([elf.y for elf in elves])
     max_y = max([elf.y for elf in elves])
     print((max_x - min_x + 1) * (max_y - min_y + 1) - len(elves))
+    print(time)
             
 
 def get_proposal(elves, location, ordered_steps):
