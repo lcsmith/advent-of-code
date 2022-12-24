@@ -22,13 +22,17 @@ def run():
             if lines[y][x] != '.':
                 blizzards[Location(x, y)] = [lines[y][x]]
 
-    print(get_astar_time(blizzards, start, target, max_x, max_y))
-
-
-def get_astar_time(blizzards, start, target, max_x, max_y):
     time_blizzards = {0: blizzards}
-    visited = {Temporal(start, 0)}
-    fringe = [apply_heuristic(Temporal(start, 0), target)]
+    first_time = get_astar_time(time_blizzards, 0, start, target, max_x, max_y)
+    print(first_time)
+    second_time = get_astar_time(time_blizzards, first_time, target, start, max_x, max_y)
+    third_time = get_astar_time(time_blizzards, second_time, start, target, max_x, max_y)
+    print(third_time)
+
+
+def get_astar_time(time_blizzards, initial_time, start, target, max_x, max_y):
+    visited = {Temporal(start, initial_time)}
+    fringe = [apply_heuristic(Temporal(start, initial_time), target)]
     heapq.heapify(fringe)
     while len(fringe) > 0:
         _, temporal = heapq.heappop(fringe)
