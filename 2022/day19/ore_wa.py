@@ -16,7 +16,7 @@ def run():
             line)[0]
         blueprints.append(Blueprint(*[int(m) for m in match]))
 
-    is_part2 = False
+    is_part2 = True
     if is_part2:
         num_prints = 3
         total_time = 32
@@ -72,13 +72,14 @@ def take_step(blueprint, state):
                   clay_robot=state.clay_robot, obsidian_robot=state.obsidian_robot, geode_robot=state.geode_robot))
 
     if blueprint.ore_ore <= state.ore and \
+            state.ore_robot < max(blueprint.ore_ore, blueprint.clay_ore, blueprint.obsidian_ore, blueprint.geode_ore) and \
             (did_build_last_state(state) or state.previous_state.ore < blueprint.ore_ore):
         new_states.append(
             State(previous_state=state, ore=new_ore - blueprint.ore_ore, clay=new_clay, obsidian=new_obsidian,
                   geode=new_geode, ore_robot=state.ore_robot + 1, clay_robot=state.clay_robot,
                   obsidian_robot=state.obsidian_robot, geode_robot=state.geode_robot))
 
-    if blueprint.clay_ore <= state.ore and \
+    if blueprint.clay_ore <= state.ore and state.clay_robot < blueprint.obsidian_clay and \
             (did_build_last_state(state) or state.previous_state.ore < blueprint.clay_ore):
         new_states.append(
             State(previous_state=state, ore=new_ore - blueprint.clay_ore, clay=new_clay, obsidian=new_obsidian,
@@ -86,6 +87,7 @@ def take_step(blueprint, state):
                   obsidian_robot=state.obsidian_robot, geode_robot=state.geode_robot))
 
     if blueprint.obsidian_ore <= state.ore and blueprint.obsidian_clay <= state.clay and \
+            state.obsidian_robot < blueprint.geode_obsidian and \
             (did_build_last_state(state) or
              state.previous_state.ore < blueprint.obsidian_ore or
              state.previous_state.clay < blueprint.obsidian_clay):
