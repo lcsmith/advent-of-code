@@ -32,7 +32,7 @@ def run():
         quality_levels.append(blueprints[x].number * best_geodes)
         geodes.append(best_geodes)
     print(sum(quality_levels))
-    print(geodes)
+    print(sum(geodes))
 
 
 def get_best(blueprint, total_time):
