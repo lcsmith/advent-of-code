@@ -1,16 +1,9 @@
-def run_part1():
+def run(allow_dampening):
     line_levels = parse_input()
 
     safe_lines = 0
     for levels in line_levels:
-        is_increasing = levels[1] > levels[0]
-        is_safe = True
-        for x in range(1, len(levels)):
-            if (levels[x] > levels[x-1]) != is_increasing:
-                is_safe = False
-            if not (1 <= abs(levels[x] - levels[x-1]) <= 3):
-                is_safe = False
-        if is_safe:
+        if are_levels_safe(levels, allow_dampening):
             safe_lines += 1
 
     print(safe_lines)
@@ -23,6 +16,20 @@ def parse_input():
     line_levels = [[int(x) for x in line] for line in line_levels]
     return line_levels
 
+def are_levels_safe(levels, allow_dampening):
+    compare_next = [levels[x] - levels[x+1] for x in range(0,len(levels)-1)]
+    if all(1 <= comp <= 3 for comp in compare_next) or all(-3 <= comp <= -1 for comp in compare_next):
+        return True
+    if allow_dampening:
+        return any(are_levels_safe(subset, False) for subset in get_subsets(levels))
+    return False
+
+def get_subsets(levels):
+    subsets = []
+    for x in range(0, len(levels)):
+        subsets.append(levels[:x] + levels[x+1:])
+    return subsets
 
 if __name__ == '__main__':
-    run_part1()
+    run(False)
+    run(True)
