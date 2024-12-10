@@ -1,4 +1,16 @@
-def run():
+def run_part1():
+    first_list, second_list = parse_input()
+
+    first_list.sort()
+    second_list.sort()
+
+    total_distance = 0
+    for x in range(0, len(first_list)):
+        total_distance += abs(first_list[x] - second_list[x])
+
+    print(total_distance)
+
+def parse_input():
     with open('input') as infile:
         lines = [line.strip() for line in infile]
 
@@ -6,14 +18,8 @@ def run():
     first_list = [int(split_line[0]) for split_line in line_split]
     second_list = [int(split_line[1]) for split_line in line_split]
 
-    first_list.sort()
-    second_list.sort()
+    return first_list, second_list
 
-    total_distance = 0
-    for x in range(0, len(line_split)):
-        total_distance += abs(first_list[x] - second_list[x])
-
-    print(total_distance)
 
 if __name__ == '__main__':
-    run()
+    run_part1()
