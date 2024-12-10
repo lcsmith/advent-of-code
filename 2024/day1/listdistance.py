@@ -10,6 +10,15 @@ def run_part1():
 
     print(total_distance)
 
+def run_part2():
+    first_list, second_list = parse_input()
+
+    total_similarity = 0
+    for x in range(0, len(first_list)):
+        total_similarity += first_list[x] * second_list.count(first_list[x])
+
+    print(total_similarity)
+
 def parse_input():
     with open('input') as infile:
         lines = [line.strip() for line in infile]
@@ -23,3 +32,4 @@ def parse_input():
 
 if __name__ == '__main__':
     run_part1()
+    run_part2()
