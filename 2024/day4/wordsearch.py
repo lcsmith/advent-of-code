@@ -1,3 +1,5 @@
+
+
 def run_part1():
     letter_grid = parse_input()
 

@@ -1,3 +1,5 @@
+
+
 def run(allow_dampening):
     line_levels = parse_input()
 

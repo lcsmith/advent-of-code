@@ -1,3 +1,5 @@
+
+
 def run_part1():
     first_list, second_list = parse_input()
 

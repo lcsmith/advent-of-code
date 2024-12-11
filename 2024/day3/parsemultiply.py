@@ -1,5 +1,6 @@
 import re
 
+
 def run_part1():
     with open('input') as infile:
         full_input = infile.read()
