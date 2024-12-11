@@ -45,9 +45,9 @@ def run_part2():
 def is_x_mas(letter_grid, col_idx, row_idx):
     if letter_grid[col_idx][row_idx] != 'A':
         return False
-    upper_left = letter_grid[col_idx-1][row_idx-1]
+    upper_left  = letter_grid[col_idx-1][row_idx-1]
     upper_right = letter_grid[col_idx+1][row_idx-1]
-    lower_left = letter_grid[col_idx-1][row_idx+1]
+    lower_left  = letter_grid[col_idx-1][row_idx+1]
     lower_right = letter_grid[col_idx+1][row_idx+1]
 
     if not (upper_left == 'M' and lower_right == 'S' or upper_left == 'S' and lower_right == 'M'):
