@@ -1,10 +1,12 @@
 from collections import defaultdict
+from functools import cmp_to_key
 
 
-def run_part1():
+def run():
     order_rules, updates = parse_input()
 
-    middle_sums = 0
+    valid_middle_sums = 0
+    invalid_middle_sums = 0
     for update in updates:
         is_valid = True
         for first_idx in range(0, len(update)):
@@ -14,9 +16,14 @@ def run_part1():
 
         if is_valid:
             middle_idx = int(len(update) / 2)
-            middle_sums += int(update[middle_idx])
+            valid_middle_sums += int(update[middle_idx])
+        else:
+            sorted_update = sorted(update, key=cmp_to_key(lambda first, second: 1 if first in order_rules[second] else -1))
+            middle_idx = int(len(sorted_update) / 2)
+            invalid_middle_sums += int(sorted_update[middle_idx])
 
-    print(middle_sums)
+    print(valid_middle_sums)
+    print(invalid_middle_sums)
 
 def parse_input():
     order_rules = defaultdict(set)
@@ -37,4 +44,4 @@ def parse_input():
 
 
 if __name__ == '__main__':
-    run_part1()
+    run()
