@@ -3,7 +3,7 @@ from collections import namedtuple, defaultdict
 TableCoordinates = namedtuple('TableCoordinates', ['row', 'col'])
 
 
-def run_part1():
+def run(include_resonance):
     letter_grid = parse_input()
 
     antenna_locations = defaultdict(list)
@@ -19,7 +19,7 @@ def run_part1():
     antinodes = set()
     for freq in antenna_locations:
         locations = antenna_locations[freq]
-        for antinode in get_all_valid_antinodes(locations, row_length, col_length):
+        for antinode in get_all_valid_antinodes(locations, row_length, col_length, include_resonance):
             antinodes.add(antinode)
 
     print(len(antinodes))
@@ -28,25 +28,44 @@ def run_part1():
     #print_map(letter_grid)
 
 
-def get_all_valid_antinodes(locations, row_length, col_length):
+def get_all_valid_antinodes(locations, row_length, col_length, include_resonance):
     all_valid_antinodes = []
 
     for first_idx in range(0, len(locations)-1):
         for second_idx in range(first_idx+1, len(locations)):
-            antinodes = get_antinodes(locations[first_idx], locations[second_idx])
+            antinodes = get_valid_antinodes(locations[first_idx], locations[second_idx], row_length, col_length, include_resonance)
             for antinode in antinodes:
-                if 0 <= antinode.row < row_length and 0 <= antinode.col < col_length:
-                    all_valid_antinodes.append(antinode)
+                all_valid_antinodes.append(antinode)
     return all_valid_antinodes
 
 
-def get_antinodes(first, second):
+def get_valid_antinodes(first, second, row_length, col_length, include_resonance):
     row_diff = first.row - second.row
     col_diff = first.col - second.col
 
-    first_antinode = TableCoordinates(first.row + row_diff, first.col + col_diff)
-    second_antinode = TableCoordinates(second.row - row_diff, second.col - col_diff)
-    return first_antinode, second_antinode
+    current_node = first
+    while include_resonance or current_node == first:
+        current_node = TableCoordinates(current_node.row + row_diff, current_node.col + col_diff)
+        if is_valid(current_node, row_length, col_length):
+            yield current_node
+        else:
+            break
+
+    current_node = second
+    while include_resonance or current_node == second:
+        current_node = TableCoordinates(current_node.row - row_diff, current_node.col - col_diff)
+        if is_valid(current_node, row_length, col_length):
+            yield current_node
+        else:
+            break
+
+    if include_resonance:
+        yield first
+        yield second
+
+
+def is_valid(node, row_length, col_length):
+    return 0 <= node.row < row_length and 0 <= node.col < col_length
 
 
 def print_map(map_chars):
@@ -62,4 +81,5 @@ def parse_input():
 
 
 if __name__ == '__main__':
-    run_part1()
+    run(False)
+    run(True)
