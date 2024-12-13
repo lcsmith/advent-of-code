@@ -23,6 +23,7 @@ def is_possible(expected_result, operands, possible_operators):
     results = [int(operands[0])]
     for operand_idx in range (1, len(operands)):
         results = [op(val, int(operands[operand_idx])) for (val, op) in itertools.product(results, possible_operators)]
+        results = [x for x in results if x <= expected_result]
     return any([x == expected_result for x in results])
 
 
