@@ -11,9 +11,7 @@ def run(num_generations):
 
     for blinks in range(num_generations):
         stone_frequencies = blink_all_stone_frequencies(stone_frequencies)
-    total_stones = 0
-    for stone in stone_frequencies:
-        total_stones += stone_frequencies[stone]
+    total_stones = sum(stone_frequencies.values())
 
     print(total_stones)
 
