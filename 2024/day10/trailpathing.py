@@ -8,27 +8,31 @@ East  = TableCoordinates( 0,  1)
 South = TableCoordinates( 1,  0)
 West  = TableCoordinates( 0, -1)
 
-def run():
+def run(deduplicate_paths):
     trail_map = parse_input()
 
-    trailhead_scores = get_all_trailhead_scores(trail_map)
-    print(sum([score for trailhead, score in trailhead_scores]))
+    trailhead_values = get_all_trailhead_values(trail_map, deduplicate_paths)
+    print(sum([value for trailhead, value in trailhead_values]))
 
 
-def get_all_trailhead_scores(trail_map):
+def get_all_trailhead_values(trail_map, deduplicate_paths):
     trailheads = find_trailheads(trail_map)
     adjacency_map = build_adjacency_map(trail_map)
-    trailhead_scores = [(trailhead, get_trailhead_score(adjacency_map, trailhead)) for trailhead in trailheads]
+    trailhead_scores =\
+        [(trailhead, get_trailhead_value(adjacency_map, trailhead, deduplicate_paths)) for trailhead in trailheads]
     return trailhead_scores
 
 
-def get_trailhead_score(adjacency_map, trailhead):
-    accessible_locations = {trailhead}
+def get_trailhead_value(adjacency_map, trailhead, deduplicate_paths):
+    accessible_locations = [trailhead]
     for elevation in range(9):
-        next_accessible = set()
+        next_accessible = []
         for location in accessible_locations:
-            next_accessible.update(adjacency_map[location.row][location.col])
-        accessible_locations = next_accessible
+            next_accessible.extend(adjacency_map[location.row][location.col])
+        if deduplicate_paths:
+            accessible_locations = list(set(next_accessible))
+        else:
+            accessible_locations = next_accessible
     return len(accessible_locations)
 
 
@@ -72,4 +76,5 @@ def parse_input():
 
 
 if __name__ == '__main__':
-    run()
+    run(True)
+    run(False)
