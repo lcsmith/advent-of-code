@@ -1,13 +1,32 @@
+from collections import defaultdict
 
 
 def run():
     monkey_seeds = parse_input()
-    print(monkey_seeds)
 
     num_generations = 2000
+    price_history = [monkey_seeds]
     for x in range(num_generations):
         monkey_seeds = [evolve_secret(secret) for secret in monkey_seeds]
+        price_history.append([secret % 10 for secret in monkey_seeds])
+
     print(sum(monkey_seeds))
+
+    sequence_values = defaultdict(int)
+    for monkey_idx in range(len(monkey_seeds)):
+        seen_sequences = set()
+        for price_idx in range(4, num_generations+1):
+            price = price_history[price_idx][monkey_idx]
+            sequence = (
+                    price_history[price_idx-3][monkey_idx] - price_history[price_idx-4][monkey_idx],
+                    price_history[price_idx-2][monkey_idx] - price_history[price_idx-3][monkey_idx],
+                    price_history[price_idx-1][monkey_idx] - price_history[price_idx-2][monkey_idx],
+                    price_history[price_idx-0][monkey_idx] - price_history[price_idx-1][monkey_idx])
+            if sequence not in seen_sequences:
+                sequence_values[sequence] += price
+                seen_sequences.add(sequence)
+
+    print(max([sequence_values[key] for key in sequence_values]))
 
 
 def evolve_secret(secret_number):
