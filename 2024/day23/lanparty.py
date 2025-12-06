@@ -5,6 +5,12 @@ def run():
     connections = parse_input()
 
     connection_dict = build_connection_dict(connections)
+    triplets = get_sets_of_three_with_t(connection_dict)
+    print(len(triplets))
+    get_fully_connected_groups(connection_dict)
+
+
+def get_sets_of_three_with_t(connection_dict):
     triplets = set()
     for computer in connection_dict:
         if computer.startswith('t'):
@@ -12,7 +18,18 @@ def run():
                 for third_connection in connection_dict[connected_computer]:
                     if third_connection in connection_dict[computer]:
                         triplets.add(frozenset({computer, connected_computer, third_connection}))
-    print(len(triplets))
+    return triplets
+
+
+def get_fully_connected_groups(connection_dict:defaultdict[str, set]):
+    ordered_computers = sorted([computer for computer in connection_dict])
+
+    max_length = 0
+    for order_idx in range(len(ordered_computers)):
+        current_computer = ordered_computers[order_idx]
+        fully_connected = [connected for connected in connection_dict[current_computer] if connected > current_computer]
+
+
 
 def build_connection_dict(connections):
     connection_dict = defaultdict(set)
